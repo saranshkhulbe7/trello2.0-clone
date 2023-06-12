@@ -18,14 +18,14 @@ function Header() {
   const [suggestion, setSuggestion] = useState<string>("");
 
   useEffect(() => {
-    if (board.columns.size === 0) return;
-    setLoading(true);
-    const fetchSuggestionFunc = async () => {
-      const suggestion = await fetchSuggestion(board);
-      setSuggestion(suggestion);
-      setLoading(false);
-    };
-    fetchSuggestionFunc();
+    // if (board.columns.size === 0) return;
+    // setLoading(true);
+    // const fetchSuggestionFunc = async () => {
+    //   const suggestion = await fetchSuggestion(board);
+    //   setSuggestion(suggestion);
+    //   setLoading(false);
+    // };
+    // fetchSuggestionFunc();
   }, [board]);
 
   return (
@@ -62,17 +62,20 @@ function Header() {
         </div>
       </div>
 
+      {/* gpt */}
       <div className="flex items-center justify-center px-5 py-2 md:py-5">
-        <p className="flex items-center text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055d1] p-5">
-          <UserCircleIcon
-            className={`inline-block h-10 w-10 text-[#0055D1] mr-1 ${
-              loading && "animate-spin"
-            }`}
-          />
-          {suggestion && !loading
-            ? suggestion
-            : "GPT is summarising for your day..."}
-        </p>
+        {false && (
+          <p className="flex items-center text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055d1] p-5">
+            <UserCircleIcon
+              className={`inline-block h-10 w-10 text-[#0055D1] mr-1 ${
+                loading && "animate-spin"
+              }`}
+            />
+            {suggestion && !loading
+              ? suggestion
+              : "GPT is summarising for your day..."}
+          </p>
+        )}
       </div>
     </header>
   );

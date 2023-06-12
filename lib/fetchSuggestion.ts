@@ -2,14 +2,13 @@ import formatTodoForAI from "./formatTodoForAI";
 
 const fetchSuggestion = async (board: Board) => {
     const todos = formatTodoForAI(board);
-    console.log("FORMATTED TODOS to send", todos);
 
     const res = await fetch("/api/generateSummary", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({todos}),
+        body: JSON.stringify({ todos }),
     })
 
     const GPTdata = await res.json();

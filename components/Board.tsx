@@ -5,8 +5,12 @@ import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
 import { useBoardStore } from "@/store/BoardStore";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 function Board() {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const direction = isMobile ? "vertical" : "horizontal";
+
   const [board, getBoard, setBoardState, updateTodoInDB] = useBoardStore(
     (state) => [
       state.board,
@@ -97,7 +101,7 @@ function Board() {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="board" direction="horizontal" type="column">
+      <Droppable droppableId="board" direction={direction} type="column">
         {(provided) => (
           <div
             className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto"
